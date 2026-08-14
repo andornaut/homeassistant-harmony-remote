@@ -1,5 +1,8 @@
 # homeassistant-harmony-remote
 
+[![CI](https://github.com/andornaut/homeassistant-harmony-remote/actions/workflows/ai-attributions.yml/badge.svg)](https://github.com/andornaut/homeassistant-harmony-remote/actions/workflows/ai-attributions.yml)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+
 * [v1](./v1/)
 
 Physical remote control for Home Assistant

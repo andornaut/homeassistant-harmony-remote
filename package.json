@@ -8,6 +8,8 @@
   "devDependencies": {
     "@eslint/js": "^10.0.1",
     "eslint": "^10.1.0",
+    "eslint-plugin-simple-import-sort": "^14.0.0",
+    "eslint-plugin-sort-destructure-keys": "^3.0.0",
     "globals": "^17.6.0",
     "nodemon": "^3.1.14"
   },
@@ -18,7 +20,7 @@
     "copy-pcbs-to-routed": "sh -c 'set -vxe;cp ./${npm_package_config_VERSION}/kicad/[!_]*.kicad_pcb ./${npm_package_config_VERSION}/kicad/routed/'",
     "copy-traces-from-routed": "sh -c 'set -vxe;for f in ./${npm_package_config_VERSION}/kicad/routed/[!_]*.kicad_pcb; do echo \"${f}\" && python3 ./${npm_package_config_VERSION}/ergogen/kb_ergogen_helper/ergogen_helper.py --no-backup copy-traces \"${f}\" ./${npm_package_config_VERSION}/kicad/$(basename \"${f}\"); done'",
     "fab-jlcpcb": "sh -c 'set -vxe;for f in ./${npm_package_config_VERSION}/kicad/routed/[!_]*.kicad_pcb; do echo \"${f}\" && kikit fab jlcpcb --nametemplate \"ha-harmony-remote_{boardTitle}_{date}\" \"${f}\" dist/${npm_package_config_VERSION}/kicad/jlcpcb/; done'",
-    "lint": "eslint .",
+    "lint": "eslint --max-warnings 0 .",
     "update-pcbs": "sh -c 'set -vxe;for f in dist/${npm_package_config_VERSION}/ergogen/pcbs/[!_]*.kicad_pcb; do echo ${f} && python3 ./${npm_package_config_VERSION}/ergogen/kb_ergogen_helper/ergogen_helper.py --no-backup update-pcb ${f}; done'",
     "watch": "sh -c 'set -vxe;nodemon --ext .js,.yaml --watch ./${npm_package_config_VERSION}/ergogen/config.yaml --exec \"npm run build\"'",
     "watch-and-copy-pcbs-to-kicad": "sh -c 'set -vxe;nodemon --ext .js,.yaml --watch ./${npm_package_config_VERSION}/ergogen/config.yaml --exec \"npm run build && npm run copy-pcbs-to-kicad\"'"

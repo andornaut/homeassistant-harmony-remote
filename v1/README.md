@@ -99,6 +99,17 @@ espefuse.py --port /dev/ttyUSB1 summary
 
 ## Developing
 
+The footprint libraries under [`../ergogen/`](../ergogen/) are submodules, so a
+clone without them leaves those directories empty:
+
+```bash
+# Include submodules when cloning
+git clone --recursive git@github.com:andornaut/homeassistant-harmony-remote.git
+
+# Fallback only if you cloned without --recursive
+git submodule update --init --recursive
+```
+
 ### [Ergogen](https://github.com/ergogen/ergogen)
 
 * [Project folder](./ergogen)

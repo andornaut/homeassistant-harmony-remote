@@ -14,6 +14,9 @@
     "nodemon": "^3.1.14",
     "prettier": "^3.9.6"
   },
+  "engines": {
+    "node": ">=24.13.1"
+  },
   "scripts": {
     "build": "sh -c 'set -vxe;npx ergogen ./${npm_package_config_VERSION}/ergogen/ --output dist/${npm_package_config_VERSION}/ergogen/ && npm run update-pcbs'",
     "clean": "rm -rf dist",

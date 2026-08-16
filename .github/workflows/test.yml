@@ -49,7 +49,7 @@ jobs:
           node-version-file: .nvmrc
           cache: npm
 
-      - name: Install dependencies
+      - name: Install Node dependencies
         run: npm ci
 
       # eslint.config.mjs scopes this to the footprints written here rather
@@ -62,10 +62,11 @@ jobs:
         with:
           python-version-file: .python-version
 
-      # Pinned in the gate rather than taken from the runner image, so a PyYAML
-      # release cannot turn this red on a commit that did not touch the configs.
-      - name: Install PyYAML
-        run: pip install pyyaml==6.0.3
+      # Pinned in a manifest rather than installed by name, so Dependabot can
+      # see the version and a PyYAML release cannot turn this red on a commit
+      # that did not touch the configs.
+      - name: Install dependencies
+        run: pip install -r requirements-dev.txt
 
       # The ESPHome and Home Assistant configs are the whole of what this
       # repository ships, and nothing reads them until they are flashed or

@@ -6,3 +6,4 @@ _autosave*
 */kicad/**/*-backups
 .env
 node_modules/
+.venv/

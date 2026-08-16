@@ -1,52 +1,52 @@
 # Version 1 of the Homeassistant Harmony Remote
 
-|col1 | col2 | col3|
-|--- | --- | ---|
-|Mute||Power|
-|Vol↓||Vol↑|
-||Up||
-|Left|Select|Right|
-||Down||
-|Back||Home|
+| col1 | col2   | col3  |
+| ---- | ------ | ----- |
+| Mute |        | Power |
+| Vol↓ |        | Vol↑  |
+|      | Up     |       |
+| Left | Select | Right |
+|      | Down   |       |
+| Back |        | Home  |
 
-|col1| col2|
-|--- | ---|
-|Cameras|CBC|
-|Crave|Netflix|
-|Switch|VLC|
-|Xbox|YouTube|
+| col1    | col2    |
+| ------- | ------- |
+| Cameras | CBC     |
+| Crave   | Netflix |
+| Switch  | VLC     |
+| Xbox    | YouTube |
 
-| GPIO Pin | Button ID | Wake Supported | External Pullup Resistor Required |
-|----------|---------------|:--------------:|:-----------------------:|
-| GPIO4 | power | Yes | |
-| GPIO12 | home | Yes | |
-| GPIO13 | mute | Yes | |
-| GPIO14 | shortcut_1 | Yes | |
-| GPIO16 | shortcut_2 | | |
-| GPIO17 | shortcut_3 | | |
-| GPIO18 | shortcut_4 | | |
-| GPIO19 | shortcut_5 | | |
-| GPIO21 | shortcut_6 | | |
-| GPIO22 | shortcut_7 | | |
-| GPIO23 | shortcut_8 | | |
-| GPIO25 | volume_up | Yes | |
-| GPIO26 | volume_down | Yes | |
-| GPIO27 | select_button | Yes | |
-| GPIO32 | back | Yes | |
-| GPIO33 | left | Yes | |
-| GPIO34 | right | Yes | Yes |
-| GPIO36 | up | Yes | Yes |
-| GPIO39 | down | Yes | Yes |
+| GPIO Pin | Button ID     | Wake Supported | External Pullup Resistor Required |
+| -------- | ------------- | :------------: | :-------------------------------: |
+| GPIO4    | power         |      Yes       |                                   |
+| GPIO12   | home          |      Yes       |                                   |
+| GPIO13   | mute          |      Yes       |                                   |
+| GPIO14   | shortcut_1    |      Yes       |                                   |
+| GPIO16   | shortcut_2    |                |                                   |
+| GPIO17   | shortcut_3    |                |                                   |
+| GPIO18   | shortcut_4    |                |                                   |
+| GPIO19   | shortcut_5    |                |                                   |
+| GPIO21   | shortcut_6    |                |                                   |
+| GPIO22   | shortcut_7    |                |                                   |
+| GPIO23   | shortcut_8    |                |                                   |
+| GPIO25   | volume_up     |      Yes       |                                   |
+| GPIO26   | volume_down   |      Yes       |                                   |
+| GPIO27   | select_button |      Yes       |                                   |
+| GPIO32   | back          |      Yes       |                                   |
+| GPIO33   | left          |      Yes       |                                   |
+| GPIO34   | right         |      Yes       |                Yes                |
+| GPIO36   | up            |      Yes       |                Yes                |
+| GPIO39   | down          |      Yes       |                Yes                |
 
 ## Software
 
-* [Setting up ESPHome for Home Assistant (video)](https://www.youtube.com/watch?v=7PoUWszwaFk)
+- [Setting up ESPHome for Home Assistant (video)](https://www.youtube.com/watch?v=7PoUWszwaFk)
 
 1. Navigate to [https://web.esphome.io/](https://web.esphome.io/) using Google Chrome
 1. Connect the remote via USB
 1. Click "Connect" and select the remote device
 1. Click "Prepare for first use"
-   * Press and hold the "Boot" button on the microcontroller to enter programming mode
+   - Press and hold the "Boot" button on the microcontroller to enter programming mode
 1. Click "Connect to wi-fi"
 1. Navigate to [ESPHome Device Builder](https://esphome.io/guides/getting_started_command_line#esphome-device-builder-docker)
 
@@ -60,18 +60,18 @@ sudo google-chrome --no-sandbox --no-first-run --no-default-browser-check &
 
 ### Bill of materials (BOM)
 
-Category | Quantity | Part
---- | --- | ---
-Microcontroller | 1 | [SparkFun Thing Plus - ESP32 WROOM (USB-C)](https://www.sparkfun.com/sparkfun-thing-plus-esp32-wroom-usb-c.html) ([pin out](https://cdn.sparkfun.com/assets/3/9/5/f/e/SparkFun_Thing_Plus_ESP32_WROOM_C_graphical_datasheet2.pdf))
-Screws | 4 | M3x8mm screws
-Sockets (16-pin)| 2 | [Mill-Max 315-43-116-41-001000](https://www.digikey.ca/en/products/detail/mill-max-manufacturing-corp/315-43-116-41-001000/4455239)
-Socket pins | 32 | [Mill-Max 3320-0-00-15-00-00-03-0](https://www.digikey.ca/en/products/detail/mill-max-manufacturing-corp/3320-0-00-15-00-00-03-0/4147392)
-Threaded inserts | 4 | [M3x3mm (short) threaded inserts](https://cnckitchen.store/products/gewindeeinsatz-threaded-insert-m3-short-100-stk-pcs)
+| Category         | Quantity | Part                                                                                                                                                                                                                               |
+| ---------------- | -------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Microcontroller  | 1        | [SparkFun Thing Plus - ESP32 WROOM (USB-C)](https://www.sparkfun.com/sparkfun-thing-plus-esp32-wroom-usb-c.html) ([pin out](https://cdn.sparkfun.com/assets/3/9/5/f/e/SparkFun_Thing_Plus_ESP32_WROOM_C_graphical_datasheet2.pdf)) |
+| Screws           | 4        | M3x8mm screws                                                                                                                                                                                                                      |
+| Sockets (16-pin) | 2        | [Mill-Max 315-43-116-41-001000](https://www.digikey.ca/en/products/detail/mill-max-manufacturing-corp/315-43-116-41-001000/4455239)                                                                                                |
+| Socket pins      | 32       | [Mill-Max 3320-0-00-15-00-00-03-0](https://www.digikey.ca/en/products/detail/mill-max-manufacturing-corp/3320-0-00-15-00-00-03-0/4147392)                                                                                          |
+| Threaded inserts | 4        | [M3x3mm (short) threaded inserts](https://cnckitchen.store/products/gewindeeinsatz-threaded-insert-m3-short-100-stk-pcs)                                                                                                           |
 
 ### Set ESP32 flash voltage to 3.3v to use GPIO12 for a button
 
-* [esptool GitHub](https://github.com/espressif/esptool)
-* [espefuse.py documentation](https://docs.espressif.com/projects/esptool/en/latest/esp32/espefuse/index.html)
+- [esptool GitHub](https://github.com/espressif/esptool)
+- [espefuse.py documentation](https://docs.espressif.com/projects/esptool/en/latest/esp32/espefuse/index.html)
 
 In order to use GPIO12 for a button, we must ensure the ESP32 always uses 3.3V for flash voltage.
 
@@ -112,22 +112,22 @@ git submodule update --init --recursive
 
 ### [Ergogen](https://github.com/ergogen/ergogen)
 
-* [Project folder](./ergogen)
-* [Configuration file](./ergogen/config.yaml)
+- [Project folder](./ergogen)
+- [Configuration file](./ergogen/config.yaml)
 
 1. Convert the prototype to Ergogen's DSL, and then save it to [`./ergogen/config.yaml`](./ergogen/config.yaml)
-   * If prototyping using this [online version of Ergogen](https://ergogen.cache.works/), then download the "raw.txt" file
+   - If prototyping using this [online version of Ergogen](https://ergogen.cache.works/), then download the "raw.txt" file
 1. Run `npm run build` to generate and save outlines and pcbs to `../dist/v1/ergogen/`
-    * Alternatively, run `npm run watch` or `npm run watch-and-copy-pcbs-to-kicad`
+   - Alternatively, run `npm run watch` or `npm run watch-and-copy-pcbs-to-kicad`
 
 ### [KiCad](https://www.kicad.org/)
 
-* [Project folder](./kicad)
+- [Project folder](./kicad)
 
 1. Run `npm run copy-pcbs-to-kicad` to copy the `../dist/v1/ergogen/pcbs/*.kicad_pcb` files generated by Ergogen to [`./kicad/`](./kicad/)
 1. Run `xdg-open ./kicad/ha-harmony-remote.kicad_pcb`
 1. Route the PCBs in [`./kicad/`](./kicad/), and then save them to [`./kicad/routed/`](./kicad/routed/)
-    * If you've generated new PCB files using Ergogen, then you can run `npm run copy-traces-from-routed` to copy traces from the PCBs in [`./kicad/routed/`](./kicad/routed/) back to those of the same name in [`./kicad/`](./kicad/)
+   - If you've generated new PCB files using Ergogen, then you can run `npm run copy-traces-from-routed` to copy traces from the PCBs in [`./kicad/routed/`](./kicad/routed/) back to those of the same name in [`./kicad/`](./kicad/)
 1. Run `npm run copy-pcbs-to-routed && npm run fab-jlcpcb` to generate and save gerber and drill files to `../dist/v1/kicad/jlcpcb/*.zip`
 1. Submit the `../dist/v1/kicad/jlcpcb/*.zip` files to [JLCPCB](https://jlcpcb.com/)
 

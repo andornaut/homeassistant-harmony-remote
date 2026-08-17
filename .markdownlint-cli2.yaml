@@ -35,7 +35,7 @@ ignores:
   - GEMINI.md
   # the ergogen submodules, whose Markdown is upstream's. Matched at any depth:
   # each revision directory symlinks to the one checkout, so the same files are
-  # reachable under v1/ through v4/ as well as at the path .gitmodules names.
+  # reachable under v1/ as well as at the path .gitmodules names.
   - "**/ergogen/footprints/**"
   - "**/ergogen/kb_ergogen_helper/**"
 

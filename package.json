@@ -1,4 +1,8 @@
 {
+  "name": "homeassistant-harmony-remote",
+  "version": "0.0.0",
+  "license": "MIT",
+  "private": true,
   "config": {
     "VERSION": "v1"
   },

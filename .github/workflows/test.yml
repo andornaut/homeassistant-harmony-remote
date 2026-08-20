@@ -102,6 +102,9 @@ jobs:
           Loader.add_constructor(yaml.resolver.BaseResolver.DEFAULT_MAPPING_TAG, mapping)
           Loader.add_multi_constructor("", lambda loader, suffix, node: None)
 
+          if not sys.argv[1:]:
+              raise SystemExit("no YAML files matched: the gate checked nothing")
+
           for path in sys.argv[1:]:
               print(path)
               with open(path) as f:

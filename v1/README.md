@@ -66,7 +66,7 @@ sudo google-chrome --no-sandbox --no-first-run --no-default-browser-check &
 | Screws           | 4        | M3x8mm screws                                                                                                                                                                                                                      |
 | Sockets (16-pin) | 2        | [Mill-Max 315-43-116-41-001000](https://www.digikey.ca/en/products/detail/mill-max-manufacturing-corp/315-43-116-41-001000/4455239)                                                                                                |
 | Socket pins      | 32       | [Mill-Max 3320-0-00-15-00-00-03-0](https://www.digikey.ca/en/products/detail/mill-max-manufacturing-corp/3320-0-00-15-00-00-03-0/4147392)                                                                                          |
-| Threaded inserts | 4        | [M3x3mm (short) threaded inserts](https://cnckitchen.store/products/gewindeeinsatz-threaded-insert-m3-short-100-stk-pcs)                                                                                                           |
+| Threaded inserts | 4        | [M3x3mm (short) threaded inserts](https://cnckitchen.store/products/heat-set-insert-m3-x-3-short-version-100-pieces)                                                                                                               |
 
 ### Set ESP32 flash voltage to 3.3v to use GPIO12 for a button
 

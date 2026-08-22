@@ -21,7 +21,7 @@
     "prettier": "^3.9.6"
   },
   "engines": {
-    "node": ">=24.13.1"
+    "node": ">=24.19.0"
   },
   "scripts": {
     "build": "sh -c 'set -vxe;npx ergogen ./${npm_package_config_VERSION}/ergogen/ --output dist/${npm_package_config_VERSION}/ergogen/ && npm run update-pcbs'",

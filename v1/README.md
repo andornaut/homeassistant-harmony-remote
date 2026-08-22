@@ -48,7 +48,7 @@
 1. Click "Prepare for first use"
    - Press and hold the "Boot" button on the microcontroller to enter programming mode
 1. Click "Connect to wi-fi"
-1. Navigate to [ESPHome Device Builder](https://esphome.io/guides/getting_started_command_line#esphome-device-builder-docker)
+1. Navigate to [ESPHome Device Builder](https://esphome.io/install/getting-started/#esphome-device-builder-docker)
 
 Run Google Chrome as root to avoid permission problems when attempting to access the USB port:
 
@@ -131,7 +131,7 @@ git submodule update --init --recursive
 1. Run `npm run copy-pcbs-to-routed && npm run fab-jlcpcb` to generate and save gerber and drill files to `../dist/v1/kicad/jlcpcb/*.zip`
 1. Submit the `../dist/v1/kicad/jlcpcb/*.zip` files to [JLCPCB](https://jlcpcb.com/)
 
-### [OrcaSlicer](https://github.com/SoftFever/OrcaSlicer)
+### [OrcaSlicer](https://github.com/OrcaSlicer/OrcaSlicer)
 
 The enclosure is [The Everything Remote](https://www.printables.com/model/1281626-everything-remote-esp32-powered-universal-remote), not a model this project designs.
 

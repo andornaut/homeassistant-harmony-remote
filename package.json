@@ -18,7 +18,8 @@
     "husky": "^9.1.7",
     "lint-staged": "^17.6.0",
     "nodemon": "^3.1.14",
-    "prettier": "^3.9.10"
+    "prettier": "^3.9.10",
+    "markdownlint-cli2": "0.24.0"
   },
   "engines": {
     "node": ">=24.21.0"
@@ -41,5 +42,11 @@
     "test": "make test",
     "build:internal": "sh -c 'set -vxe;npx ergogen ./${npm_package_config_VERSION}/ergogen/ --output dist/${npm_package_config_VERSION}/ergogen/ && npm run update-pcbs'",
     "generate": "make generate"
+  },
+  "overrides": {
+    "markdownlint-cli2@0.24.0": {
+      "markdownlint": "0.42.1",
+      "katex": "0.19.1"
+    }
   }
 }

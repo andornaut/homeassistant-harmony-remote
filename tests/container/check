@@ -15,7 +15,7 @@ lint() {
     shellcheck -x -P SCRIPTDIR tests/container/run tests/container/check tests/container/staged tests/container/staged-git
     npm run lint:internal
     /opt/venv/bin/python /opt/check/check-yaml.py
-    /opt/check-tools/node_modules/.bin/markdownlint-cli2
+    /opt/node-deps/node_modules/.bin/markdownlint-cli2
 }
 
 generate() {

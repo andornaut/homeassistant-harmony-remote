@@ -29,96 +29,11 @@ jobs:
   lint:
     name: Lint
     runs-on: ubuntu-latest
-    # Capped well under the six-hour default: nothing here runs longer than
-    # six minutes, so a job still going at fifteen has hung rather than failed.
     timeout-minutes: 15
-
     steps:
-      # Without submodules: the vendored footprint libraries are upstream's and
-      # nothing here checks them, so fetching them only costs time.
       - name: Checkout code
         uses: actions/checkout@v7.0.1
         with:
-          # Nothing in this job uses the token, so it is not left
-          # in .git/config for a later step to read.
           persist-credentials: false
-
-      - name: Set up Node.js
-        uses: actions/setup-node@v7.1.0
-        with:
-          node-version-file: .nvmrc
-          cache: npm
-
-      - name: Install Node dependencies
-        run: npm ci
-
-      # eslint.config.mjs scopes this to the footprints written here rather
-      # than vendored.
-      - name: Lint
-        run: npm run lint
-
-      - name: Set up Python
-        uses: actions/setup-python@v7.1.0
-        with:
-          python-version-file: .python-version
-
-      # Pinned in a manifest rather than installed by name, so Dependabot can
-      # see the version and a PyYAML release cannot turn this red on a commit
-      # that did not touch the configs.
-      - name: Install dependencies
-        run: pip install -r requirements-dev.txt
-
-      # The ESPHome and Home Assistant configs are the whole of what this
-      # repository ships, and nothing reads them until they are flashed or
-      # reloaded, so a bad indent surfaces on the device rather than here.
-      #
-      # Syntax only. `!secret` and `!lambda` are ESPHome's, and resolving them
-      # would mean holding a copy of its schema that drifts, so unknown tags are
-      # accepted as opaque. Duplicate keys are rejected, which plain safe_load
-      # allows: the later block silently replaces the earlier one, and a config
-      # that loses an automation that way loads clean.
-      #
-      # Every tracked YAML outside .github/, so a later board revision is
-      # covered without anyone remembering to add it here.
-      - name: Check that every config is valid YAML
-        run: |
-          git ls-files -z '*.yml' '*.yaml' ':!:.github/**' |
-            xargs -0 python3 -c '
-          import sys, yaml
-
-          class Loader(yaml.SafeLoader):
-              pass
-
-          def mapping(loader, node, deep=False):
-              seen, out = set(), {}
-              for kn, vn in node.value:
-                  k = loader.construct_object(kn, deep=deep)
-                  if k in seen:
-                      raise SystemExit(f"{path}:{kn.start_mark.line + 1}: duplicate key {k!r}")
-                  seen.add(k)
-                  out[k] = loader.construct_object(vn, deep=deep)
-              return out
-
-          Loader.add_constructor(yaml.resolver.BaseResolver.DEFAULT_MAPPING_TAG, mapping)
-          Loader.add_multi_constructor("", lambda loader, suffix, node: None)
-
-          if not sys.argv[1:]:
-              raise SystemExit("no YAML files matched: the gate checked nothing")
-
-          for path in sys.argv[1:]:
-              print(path)
-              with open(path) as f:
-                  yaml.load(f, Loader=Loader)
-          '
-
-      # The action bundles markdownlint-cli2, so its own tag is the tool pin and
-      # Dependabot proposes the bump through the github-actions ecosystem. It
-      # fetches nothing at run time, so a slow host cannot turn this red.
-      - name: Run markdownlint
-        uses: DavidAnson/markdownlint-cli2-action@v25.0.0
-        with:
-          # Empty on purpose. The action defaults this to `*.{md,markdown}`,
-          # which is the repository root only, and anything passed here outranks
-          # the `globs` in .markdownlint-cli2.yaml. Empty leaves the config file
-          # deciding, so this gate and a local `markdownlint-cli2` read one list.
-          globs: ""
+      - name: Run containerized lint
+        run: make lint

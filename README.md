@@ -24,3 +24,20 @@ Inspiration: [The Everything Remote](https://www.thestockpot.net/videos/theevery
 | [Vishay Dale CRCW120610K0FKEAC](https://www.digikey.ca/en/products/detail/vishay-dale/CRCW120610K0FKEAC/7928405)                              | 2        | 10 kΩ pull-up resistors                                                                                                                                         |
 | [SCHURTER tactile switches](https://www.digikey.ca/en/products/detail/schurter-inc/1301-9315-24/2643953?so=92547316&content=productdetail_CA) | 24       | 6x6x0.5mm, 0.5A 12v                                                                                                                                             |
 | [SparkFun Thing Plus - ESP32 WROOM (USB-C)](https://www.sparkfun.com/sparkfun-thing-plus-esp32-wroom-usb-c.html)                              | 1        | Microcontroller                                                                                                                                                 |
+
+## Verification
+
+Docker and Make run the project checks with an isolated source snapshot and scratch
+storage. The checks do not modify the checkout or access host credentials.
+
+```bash
+make check-info
+make check
+make lint
+```
+
+No unit test suite is declared; `make test` reports that explicitly.
+
+`make generate` runs hardware generation in container scratch. It requires
+`v1/ergogen/config.yaml`, which is not included in this checkout. Generation is
+not part of the verification gate.

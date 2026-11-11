@@ -21,18 +21,17 @@ def mapping(loader, node, deep=False):
 
 
 Loader.add_constructor(yaml.resolver.BaseResolver.DEFAULT_MAPPING_TAG, mapping)
-Loader.add_multi_constructor("", lambda loader, suffix, node: None)
+Loader.add_multi_constructor("", lambda _loader, _suffix, _node: None)
 
 excluded = (".github", "ergogen/footprints", "ergogen/kb_ergogen_helper")
 paths = sorted(
     path
-    for path in Path(".").rglob("*")
-    if path.suffix in (".yaml", ".yml")
-    and not any(path.as_posix().startswith(prefix + "/") for prefix in excluded)
+    for path in Path().rglob("*")
+    if path.suffix in (".yaml", ".yml") and not any(path.as_posix().startswith(prefix + "/") for prefix in excluded)
 )
 if not paths:
     raise SystemExit("No YAML files matched: the gate checked nothing")
 for path in paths:
     print(path)
     with path.open(encoding="utf-8") as source:
-        yaml.load(source, Loader=Loader)
+        yaml.load(source, Loader=Loader)  # noqa: S506  # Loader extends SafeLoader and rejects duplicate keys.

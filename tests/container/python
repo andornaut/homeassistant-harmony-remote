@@ -3,4 +3,6 @@ set -eu
 
 python -m venv /scratch/venv
 /scratch/venv/bin/python -m pip install --disable-pip-version-check -r requirements-dev.txt
+/scratch/venv/bin/ruff check .
+/scratch/venv/bin/ruff format --check .
 exec /scratch/venv/bin/python tests/container/check-yaml.py

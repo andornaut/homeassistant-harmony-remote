@@ -1,0 +1,13 @@
+#!/bin/sh
+set -eu
+case "$1" in
+    prepare)
+        python -m venv /scratch/venv >&2
+        /scratch/venv/bin/python -m pip install --disable-pip-version-check -r requirements-dev.txt >&2
+        exec tar --create --file - --directory / scratch/venv
+        ;;
+    lint)
+        exec /scratch/venv/bin/python tests/container/check-yaml.py
+        ;;
+    *) exit 2 ;;
+esac

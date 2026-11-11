@@ -27,17 +27,9 @@ Inspiration: [The Everything Remote](https://www.thestockpot.net/videos/theevery
 
 ## Verification
 
-Docker and Make run the project checks with an isolated source snapshot and scratch
-storage. The checks do not modify the checkout or access host credentials.
+Run `make check` for the containerized lint gate. No unit test suite or build
+check is declared. Hardware generation requires `v1/ergogen/config.yaml`, which
+is not included in this checkout.
 
-```bash
-make check-info
-make check
-make lint
-```
-
-No unit test suite is declared; `make test` reports that explicitly.
-
-`make generate` runs hardware generation in container scratch. It requires
-`v1/ergogen/config.yaml`, which is not included in this checkout. Generation is
-not part of the verification gate.
+Native npm commands run locally. `npm run lint` checks formatting and JavaScript;
+`npm run format` and the commit hook preserve automatic formatting fixes.

@@ -67,24 +67,17 @@ jobs:
           [[ ${revision} == "${GITHUB_SHA:?}" ]]
           [[ ${source_dirty} == false ]]
           stock_image node_image "node:$(sed 's/^v//' .nvmrc)"
-          stock_image python_image "python:$(cat .python-version)"
-          stock_image shellcheck_image koalaman/shellcheck:v0.11.0
-          stock_prepare "${node_image}" node -- sh -ec '
-          mkdir -p /scratch/node
-          cp package.json package-lock.json /scratch/node/
-          HUSKY=0 npm ci --prefix /scratch/node --ignore-scripts --maxsockets=1 --no-audit --no-fund >&2
-          tar --create --file - --directory / scratch/node
-          '
-          stock_prepare "${python_image}" python -- sh -ec '
-          python -m venv /scratch/venv >&2
-          /scratch/venv/bin/python -m pip install --disable-pip-version-check -r requirements-dev.txt >&2
-          tar --create --file - --directory / scratch/venv
-          '
-          stock_run "${node_image}" node -- sh -ec '
-          ln -s /scratch/node/node_modules node_modules
+          STOCK_NETWORK=bridge stock_run "${node_image}" -- sh -ec '
+          HUSKY=0 npm ci --ignore-scripts --maxsockets=1 --no-audit --no-fund
           npm run lint
-          /scratch/node/node_modules/.bin/markdownlint-cli2
+          ./node_modules/.bin/markdownlint-cli2
           '
-          stock_run "${python_image}" python -- /scratch/venv/bin/python tests/container/check-yaml.py
+          stock_image python_image "python:$(cat .python-version)"
+          STOCK_NETWORK=bridge stock_run "${python_image}" -- sh -ec '
+          python -m venv /scratch/venv
+          /scratch/venv/bin/python -m pip install --disable-pip-version-check -r requirements-dev.txt
+          /scratch/venv/bin/python tests/container/check-yaml.py
+          '
+          stock_image shellcheck_image koalaman/shellcheck:v0.11.0
           stock_readonly "${shellcheck_image}" /bin/shellcheck -x -P SCRIPTDIR tests/container/stock tests/container/check-stock tests/container/node tests/container/python
           stock_finish

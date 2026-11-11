@@ -38,7 +38,9 @@
     "watch": "sh -c 'set -vxe;nodemon --ext .js,.yaml --watch ./${npm_package_config_VERSION}/ergogen/config.yaml --exec \"npm run build\"'",
     "watch-and-copy-pcbs-to-kicad": "sh -c 'set -vxe;nodemon --ext .js,.yaml --watch ./${npm_package_config_VERSION}/ergogen/config.yaml --exec \"npm run build && npm run copy-pcbs-to-kicad\"'"
   },
+  "// WORKAROUND": "https://github.com/advisories/GHSA-g3hv-75wg-m249: remove when ESLint and @eslint/config-array support minimatch >=11.0.1.",
   "overrides": {
+    "minimatch@>=7 <11.0.1": "11.0.7",
     "markdownlint-cli2@0.24.0": {
       "markdownlint": "0.42.1",
       "katex": "0.19.1"
